@@ -281,8 +281,98 @@ encloses tree vertex <span class="Statement">=</span> (BspTree (t<span class="St
                 <section><p>Extending the algorithm to clip triangles</p>
                     <img src="assets/enclosed/7.png"/>
                 </section>
+                <section><h2>Does it work?</h2>
+                    <img class="fragment" width="50%" src="assets/Csg_tree.png"/>
+                </section>
+                <section><h2>Does it Work?</h2>
+<pre class='vimCodeElement' style="font-size: 12pt;">
+object <span class="Statement">::</span> Csg.BspTree
+object <span class="Statement">=</span> (cube <span class="Statement">`Csg.subtract`</span> cross) <span class="Statement">`Csg.intersection`</span> sphere
+    <span class="Type">where</span>
+        sphere <span class="Statement">=</span> Csg.unitSphere <span class="Constant">32</span> <span class="Constant">16</span>
+        cube <span class="Statement">=</span> Csg.uniformScale <span class="Constant">1.6</span> Csg.unitCube
+        cylinder <span class="Statement">=</span> Csg.scale (<span class="Constant">0.5</span>, <span class="Constant">0.5</span>, <span class="Constant">3.0</span>) <span class="Statement">$</span> Csg.unitCylinder <span class="Constant">32</span>
+        axes <span class="Statement">=</span> [(<span class="Constant">1.0</span>, <span class="Constant">0.0</span>, <span class="Constant">0.0</span>), (<span class="Constant">0.0</span>, <span class="Constant">1.0</span>, <span class="Constant">0.0</span>), (<span class="Constant">0.0</span>, <span class="Constant">0.0</span>, <span class="Constant">1.0</span>)]
+        cross <span class="Statement">=</span> foldl1 Csg.union <span class="Statement">$</span> map (<span class="Statement">\</span>a <span class="Statement">-&gt;</span> Csg.rotate a (pi<span class="Statement">/</span><span class="Constant">2</span>) cylinder) axes
+</pre>
+            </section>
+            <section><h2>Does it Work?</h2>
+                <img src="assets/example_obj.jpg"/>
+            </section>
+            <section><h2>Does it Work?</h2>
+<pre class='vimCodeElement'>
+dieFaces <span class="Statement">::</span> [[[Int]]]
+dieFaces <span class="Statement">=</span> [[
+    [<span class="Constant">0</span>, <span class="Constant">0</span>, <span class="Constant">0</span>],
+    [<span class="Constant">0</span>, <span class="Constant">1</span>, <span class="Constant">0</span>],
+    [<span class="Constant">0</span>, <span class="Constant">0</span>, <span class="Constant">0</span>]],
 
-			</div>
+   [[<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">0</span>],
+    [<span class="Constant">0</span>, <span class="Constant">0</span>, <span class="Constant">0</span>],
+    [<span class="Constant">0</span>, <span class="Constant">0</span>, <span class="Constant">1</span>]],
+
+   [[<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">0</span>],
+    [<span class="Constant">0</span>, <span class="Constant">1</span>, <span class="Constant">0</span>],
+    [<span class="Constant">0</span>, <span class="Constant">0</span>, <span class="Constant">1</span>]],
+
+   [[<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">1</span>],
+    [<span class="Constant">0</span>, <span class="Constant">0</span>, <span class="Constant">0</span>],
+    [<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">1</span>]],
+
+   [[<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">1</span>],
+    [<span class="Constant">0</span>, <span class="Constant">1</span>, <span class="Constant">0</span>],
+    [<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">1</span>]],
+
+   [[<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">1</span>],
+    [<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">1</span>],
+    [<span class="Constant">1</span>, <span class="Constant">0</span>, <span class="Constant">1</span>]]]
+</pre>
+            </section>
+            <section><h2>Does it work</h2>
+<pre class='vimCodeElement' style="font-size:10pt;">
+object <span class="Statement">::</span> Csg.BspTree
+object <span class="Statement">=</span> combinedFaces <span class="Statement">`Csg.intersection`</span> sphere
+    <span class="Type">where</span>
+        holeShape <span class="Statement">=</span> Csg.uniformScale <span class="Constant">0.38</span> <span class="Statement">$</span> Csg.unitCone <span class="Constant">16</span>
+        facePatterns <span class="Statement">=</span> map (reifyFace holeShape) dieFaces
+        translateFaceIntoPlace <span class="Statement">=</span> Csg.translate (<span class="Constant">0.0</span>, <span class="Constant">0.0</span>, <span class="Statement">-</span><span class="Constant">0.75</span>) <span class="Statement">.</span> Csg.uniformScale <span class="Constant">0.35</span>
+        positionedPatterns <span class="Statement">=</span> map (<span class="Statement">\</span>(r, f) <span class="Statement">-&gt;</span> r f) <span class="Statement">$</span> zip rotations <span class="Statement">$</span> map translateFaceIntoPlace facePatterns
+        cube <span class="Statement">=</span> Csg.uniformScale <span class="Constant">1.5</span> Csg.unitCube
+        combinedFaces <span class="Statement">=</span> foldl Csg.subtract cube positionedPatterns
+        sphere <span class="Statement">=</span> Csg.unitSphere <span class="Constant">32</span> <span class="Constant">16</span>
+</pre>
+            </section>
+            <section><h2>Does it Work?</h2>
+                <img src="assets/dice.jpg"/>
+            </section>
+            <section><h2>Does it Work?</h2>
+                <img src="assets/dice_haskell.jpg"/>
+            </section>
+            <section><h2>Further Work?</h2>
+                <ul>
+                    <li class ="fragment">A fancy web UI</li>
+                    <li class="fragment">Different types of operations
+                        <ul class="fragment">
+                            <li>2D CAD + Extrusions</li>
+                            <li>Convex Hull</li>
+                            <li>Minkowski Addition</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Produce more efficient geometry</li>
+                    <li class="fragment">Experiment with laziness <span class="bad">(infinite shapes)</span></li>
+                    <li class="fragment">Unit Testing</li>
+            </section>
+            <section><h2>Links:</h2><br>
+                <p>Code:</p>
+                <p><a href="https://bitbucket.org/joe_warren/csg-haskell">
+                https://bitbucket.org/joe_warren/csg-haskell</a></p>
+                <br/>
+                <p>Slides:</p>
+                <p><a href="https://bitbucket.org/joe_warren/csg-talk">
+                https://bitbucket.org/joe_warren/csg-talk</a></p>
+                <br/>
+            </section>
+            </div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
