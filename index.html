@@ -19,6 +19,7 @@
                 font-family: monospace;
             }
             .Comment { color: #0000ff; }
+            .Type { color: #00AA00; }
             .Constant { color: #ff00ff; }
             .Statement { color: #a52a2a; font-weight: bold; }
         </style>
@@ -47,7 +48,7 @@
                         <li>Background and Motivation</li>
                         <li>What is CSG?</li>
                         <li>How do you implement it?</li>
-                        <li class="fragment">No Haskell!</li></reveal>
+                        <li class="fragment">Almost no Haskell!</li></reveal>
                     </ul>
                 </section>
                 <section><h2>Background</h2>
@@ -67,6 +68,9 @@
                 </section>
                 <section><h2>OpenScad</h2>
                     <img src="assets/openscad.jpg"/>
+                </section>
+                <section><h2>OpenScad</h2>
+                    <img width="50%" src="assets/Csg_tree.png"/>
                 </section>
                 <section><h2>OpenScad?</h2>
                     <br/>
@@ -133,7 +137,75 @@ a = <span class="Constant">5</span>;</pre>
                     <p>Obviously I need to implement my own library . . .</p>
                     <p class="fragment">. . .in Haskell</p>
                 </section>
+                <section><h2>What is Haskell?</h2>
+                    <ul>
+                        <li>Pure functional programming language</li>
+                        <li>Lazy evaluation</li>
+                        <li>Statically typed, with type inference</li>
+                        <li class="fragment" style="font-style:italic;">Interesting Monadic IO</li>
+                </section>
+                <section><h2>Why Haskell?</h2>
+                    <ul>
+                        <li class="fragment">The laziness might give interesting properties</li>
+                        <li class="fragment">Interesting approach to IO, makes it easy to sandbox</li>
+                        <li class="fragment">It can be highly efficient</li>
+                        <li class="fragment">Syntax secretly quite simple</li>
+                </section>
+                <section>
+                <p>
+                    What goes into a CSG implementation?
+                </p>
+                <br/>
+                <p class="fragment">
+                Practical Algorithms for 3D Computer Graphics<br/>2<sup>nd</sup> Edition, 2013, <span style="font-style: italic;">(Ferguson)</span>, Page 419
+                </p>
+                </section>
+                <section><h2>3D Objects</h2>
+                    <img  src="assets/cubes/1.png"/>
+                </section>
+                <section><h2>3D Objects</h2>
+                    <img  src="assets/cubes/2.png"/>
+                <pre class='vimCodeElement fragment'>
+<span class="Type">type</span> Vector <span class="Statement">=</span> (Double, Double, Double)</pre>
+                </section>
 
+                <section><h2>3D Objects</h2>
+                    <img  src="assets/cubes/3.png"/>
+                </section>
+                <section><h2>3D Objects</h2>
+                    <img  src="assets/cubes/4.png"/>
+<pre class='vimCodeElement fragment'>
+<span class="Type">type</span> Vector <span class="Statement">=</span> (Double, Double, Double)
+<span class="Type">type</span> Polygon <span class="Statement">=</span> [Vector]
+<span class="Type">type</span> Solid <span class="Statement">=</span> [Polygon]
+</pre>
+                </section>
+                <section><h2>3D Objects</h2>
+                    <img  src="assets/cubes/5.png"/>
+<pre class='vimCodeElement fragment'>
+<span class="Type">type</span> Vector <span class="Statement">=</span> (Double, Double, Double)
+<span class="Type">type</span> Triangle <span class="Statement">=</span> (Vector, Vector, Vector)
+<span class="Type">type</span> Solid <span class="Statement">=</span> [Triangle]
+</pre>
+                </section>
+                <section><h2>CSG Algorithm</h2>
+                    <img  src="assets/combining/1.png"/>
+                </section>
+                <section><h2>CSG Algorithm</h2>
+                    <img  src="assets/combining/2.png"/>
+                </section>
+                <section><h2>CSG Algorithm</h2>
+                    <img  src="assets/combining/3.png"/>
+                </section>
+                <section><h2>CSG Algorithm</h2>
+                    <img  src="assets/combining/4.png"/>
+                </section>
+                <section><h2>CSG Algorithm</h2>
+                    <img  src="assets/combining/5.png"/>
+                </section>
+                <section><h2>CSG Algorithm</h2>
+                    <img  src="assets/combining/6.png"/>
+                </section>
 			</div>
 		</div>
 
