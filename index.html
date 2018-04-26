@@ -47,7 +47,7 @@
                 <section><h2>Overview</h2>
                     <ul>
                         <li>Background and Motivation</li>
-                        <li>What is CSG?</li>
+                        <li>What is Constructive Solid Geometry?</li>
                         <li>How do you implement it?</li>
                         <li class="fragment">Almost no Haskell!</li></reveal>
                     </ul>
@@ -194,6 +194,10 @@ flipped (a, b, c) <span class="Statement">=</span> (c, b, a)
                     <img  src="assets/combining/2.jpg"/>
                 </section>
                 <section><h2>CSG Algorithm</h2>
+                    <!-- flash forward, show the end results before the process -->
+                    <img  src="assets/combining/5.jpg"/>
+                </section>
+                <section><h2>CSG Algorithm</h2>
                     <img  src="assets/combining/3.jpg"/>
                 </section>
                 <section><h2>CSG Algorithm</h2>
@@ -237,7 +241,47 @@ worry about data structures and their relationships.&rdquo;
 <span class="fragment">emptyBspTree <span class="Statement">::</span> BspTree
 emptyBspTree <span class="Statement">=</span> BspTree [] emptyBspTree emptyBspTree</span>
 </pre>
-                </section
+                </section>
+                <section><p>Test if a point is enclosed:</p>
+
+<pre class='vimCodeElement'>
+encloses <span class="Statement">::</span> BspTree <span class="Statement">-&gt;</span> Vector <span class="Statement">-&gt;</span> Bool
+encloses (BspTree [] _ _) _ <span class="Statement">=</span> False
+encloses tree vertex <span class="Statement">=</span> (BspTree (t<span class="Statement">:</span>_) front back) <span class="Statement">=</span>
+    <span class="Statement">case</span> vectorSideOfPlane (triToPlane t) v <span class="Statement">of</span>
+        FRONT <span class="Statement">-&gt;</span> <span class="Statement">case</span> front <span class="Statement">of</span>
+                      (BspTree [] _ _) <span class="Statement">-&gt;</span> False
+                      a <span class="Statement">-&gt;</span> encloses front vertex
+        BACK <span class="Statement">-&gt;</span> <span class="Statement">case</span> back <span class="Statement">of</span>
+                      (BspTree [] _ _) <span class="Statement">-&gt;</span> True
+                      a <span class="Statement">-&gt;</span> encloses back vertex
+        COPLANAR <span class="Statement">-&gt;</span> <span class="Statement">case</span> back <span class="Statement">of</span>
+                      (BspTree [] _ _) <span class="Statement">-&gt;</span> True
+                      a <span class="Statement">-&gt;</span> encloses back vertex
+</pre>
+                </section>
+                <section><p>Test if a point is enclosed:</p>
+                    <img src="assets/enclosed/1.png"/>
+                </section>
+                <section><p>Test if a point is enclosed:</p>
+                    <img src="assets/enclosed/2.png"/>
+                </section>
+                <section><p>Test if a point is enclosed:</p>
+                    <img src="assets/enclosed/3.png"/>
+                </section>
+                <section><p>Test if a point is enclosed:</p>
+                    <img src="assets/enclosed/4.png"/>
+                </section>
+                <section><p>Test if a point is enclosed:</p>
+                    <img src="assets/enclosed/5.png"/>
+                </section>
+                <section><p>Extending the algorithm to clip triangles</p>
+                    <img src="assets/enclosed/6.png"/>
+                </section>
+                <section><p>Extending the algorithm to clip triangles</p>
+                    <img src="assets/enclosed/7.png"/>
+                </section>
+
 			</div>
 		</div>
 
