@@ -18,6 +18,7 @@
                 padding: 0.5em;
                 font-family: monospace;
             }
+            .bad {  color: #777777; }
             .Comment { color: #0000ff; }
             .Type { color: #00AA00; }
             .Constant { color: #ff00ff; }
@@ -110,27 +111,15 @@ a = <span class="Constant">5</span>;</pre>
                 </section>
                 <section><h2>Use a Library</h2>
                     <ul>
-                        <li class="fragment">Csg.js 
-                            <span class="fragment" style="font-style:italic">
-                                , eew, JavaScript</span>
-                            <span class="fragment" style="font-style:italic">
-                                , also slow, incomplete</span>
+                        <li class="fragment">CGAL<span class="bad fragment" style="font-style:italic">, used in OpenScad, crazy fast</span><span class="bad fragment" style="font-style:italic">, cryptic API</span>
                         </li>
-                        <li class="fragment">csg-python 
-                            <span class="fragment" style="font-style:italic">
-                                , pretty nice</span>
-                            <span class="fragment" style="font-style:italic">
-                                , slow</span>
+                        <li class="fragment">Csg.js<span class="bad fragment" style="font-style:italic">, eew, JavaScript</span><span class="bad fragment" style="font-style:italic">, also slow, incomplete</span>
                         </li>
-                        <li class="fragment">scad.clj
-                            <span class="fragment" style="font-style:italic">
-                                , writes OpenScad </span>
-                            <span class="fragment" style="font-style:italic">
-                                , I don't know Clojure</span>
+                        <li class="fragment">csg-python<span class="bad fragment" style="font-style:italic">, pretty nice</span><span class="bad fragment" style="font-style:italic">, slow</span>
                         </li>
-                        <li class="fragment">Implicit Cad 
-                            <span class="fragment" style="font-style:italic">
-                                , doesn't output clean objects</span>
+                        <li class="fragment">scad.clj<span class="bad fragment" style="font-style:italic">, writes OpenScad &#9785;</span><span class="bad fragment" style="font-style:italic">, I don't know Clojure</span>
+                        </li>
+                        <li class="fragment">Implicit Cad<span class="bad fragment" style="font-style:italic">, doesn't output clean objects</span>
                         </li>
                 </section>
                 <section><h2>Implicit CAD</h2>
