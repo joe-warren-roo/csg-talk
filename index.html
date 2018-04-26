@@ -188,6 +188,13 @@ a = <span class="Constant">5</span>;</pre>
 <span class="Type">type</span> Solid <span class="Statement">=</span> [Triangle]
 </pre>
                 </section>
+                <section><h2>3D Objects</h2>
+                    <img  src="assets/handedness.png"/>
+<pre class='vimCodeElement fragment'>
+flipped <span class="Statement">::</span> Tri <span class="Statement">-&gt;</span> Tri
+flipped (a, b, c) <span class="Statement">=</span> (c, b, a)
+</pre>
+                </section>
                 <section><h2>CSG Algorithm</h2>
                     <img  src="assets/combining/1.png"/>
                 </section>
@@ -205,6 +212,15 @@ a = <span class="Constant">5</span>;</pre>
                 </section>
                 <section><h2>CSG Algorithm</h2>
                     <img  src="assets/combining/6.png"/>
+                </section>
+                <section><h2>BSP Trees</h2>
+                    <p style="font-style: italic;">&ldquo;I'm a huge proponent of designing your code around the data, rather 
+                    than the other way around&rdquo; </p>
+                    <p>. . . </p>
+                    <p style="font-style: italic;">&ldquo;Bad programmers worry about the code. Good programmers 
+worry about data structures and their relationships.&rdquo;
+                    </p>
+                    <p>- Linus Torvalds -</p>
                 </section>
 			</div>
 		</div>
