@@ -42,57 +42,28 @@
                           position: fixed; 
                           top: 5%;
                           width: 100%;"
-                          >CSG Based CAD in Haskell</h2>
-                </section>
-                <section><h2>Overview</h2>
-                    <ul>
-                        <li>Background and Motivation</li>
-                        <li>What is Constructive Solid Geometry?</li>
-                        <li>How do you implement it?</li>
-                        <li class="fragment">Almost no Haskell!</li></reveal>
-                    </ul>
+                          >CSG Based CAD* in Haskell</h2>
+                    <h4 style="text-transform: None;
+                          font-size: 50%;
+                          position: fixed; 
+                          top: 15%;
+                          width: 100%;"
+                        >The <i>Other</i> kind of Object Oriented programming</h4>
+                    <h4 style="text-transform: None;
+                          position: fixed; 
+                          font-size: 50%;
+                          bottom: 5%;
+                          width: 100%;"
+                          >*code that builds physical objects</h4>
                 </section>
                 <section><h2>Background</h2>
                     <img src="assets/printer.jpg"/>
-                </section>
-                <section><h2>Background</h2>
-                    <img src="assets/part.jpg"/>
-                </section>
-                <section><h2>Background</h2>
-                    <img src="assets/slic3r.png"/>
-                </section>
-                <section><h2>Blender</h2>
-                    <img src="assets/blender.jpg"/>
-                </section>
-                <section><h2>Blender?</h2>
-                    <img width="50%" src="assets/blender_ui.png"/>
-                </section>
-                <section><h2>Blender?</h2>
-                    <img width="400px" src="assets/git.svg"/>
-                </section>
-                <section><h2>Blender?</h2>
-                    <img src="assets/version.jpg"/>
                 </section>
                 <section><h2>OpenScad</h2>
                     <img src="assets/openscad.jpg"/>
                 </section>
                 <section><h2>OpenScad</h2>
                     <img width="50%" src="assets/Csg_tree.png"/>
-                </section>
-                <section><h2>OpenScad?</h2>
-                    <br/>
-                    <pre class='vimCodeElement'>
-<span class="Comment">// The value of 'a' reflects only the last value set</span>
-a = <span class="Constant">0</span>;
-<span class="Statement">echo</span>(a); <span class="Comment">// 5</span>
-a = <span class="Constant">3</span>;
-<span class="Statement">echo</span>(a); <span class="Comment">// 5</span>
-a = <span class="Constant">5</span>;</pre>
-                </section>
-
-                <section><h2>OpenScad?</h2>
-                    <br/>
-                    <h1 style="font-size:600%">WAT</h1>
                 </section>
                 <section><h2>OpenScad?</h2>
                     <ul>
@@ -102,50 +73,10 @@ a = <span class="Constant">5</span>;</pre>
                         <li>No Namespaces</li>
                         <li>Unintuitive Syntax/Scoping Rules</li>
                         <li>Unhelpful Memorization</li>
-                </section>
-                <section><h2>OpenScad?</h2>
-                    <a href="https://www.youtube.com/watch?v=uk3A41U0iO4">
-                        Matt Adereth <br/> clojure.core/typing<br/> https://www.youtube.com/watch?v=uk3A41U0iO4</a>
-                </section>
-                <section><h2>Language Design is Hard</h2>
-                    <p style="font-style: italic;">&ldquo;I'm no language elitist, but language design is hard. There's a reason that some of the most famous computer scientists in the world are also language designers.&rdquo;
-                    </p>
-                    <p>- Jeff Atwood -</p>
-                </section>
-                <section><h2>Use a Library</h2>
-                    <ul>
-                        <li class="fragment">CGAL<span class="bad fragment" style="font-style:italic">, used in OpenScad, crazy fast</span><span class="bad fragment" style="font-style:italic">, cryptic API</span>
-                        </li>
-                        <li class="fragment">csg.js<span class="bad fragment" style="font-style:italic">, eew, JavaScript</span><span class="bad fragment" style="font-style:italic">, also slow, incomplete</span>
-                        </li>
-                        <li class="fragment">csg-python<span class="bad fragment" style="font-style:italic">, pretty nice</span><span class="bad fragment" style="font-style:italic">, slow</span>
-                        </li>
-                        <li class="fragment">scad.clj<span class="bad fragment" style="font-style:italic">, writes OpenScad &#9785;</span><span class="bad fragment" style="font-style:italic">, I don't know Clojure</span>
-                        </li>
-                        <li class="fragment">Implicit Cad<span class="bad fragment" style="font-style:italic">, doesn't output clean objects</span>
-                        </li>
-                </section>
-                <section><h2>Implicit CAD</h2>
-                    <img src="assets/implicitcad.jpg"/>
-                </section>
-                <section>
-                    <p>Obviously I need to implement my own library . . .</p>
-                    <p class="fragment">. . .in Haskell</p>
-                </section>
-                <section><h2>What is Haskell?</h2>
-                    <ul>
-                        <li>Pure functional programming language</li>
-                        <li>Lazy evaluation</li>
-                        <li>Statically typed, with type inference</li>
-                        <li class="fragment" style="font-style:italic;">Interesting Monadic IO</li>
+                    <a style="font-size: small" href="https://www.youtube.com/watch?v=uk3A41U0iO4">
+                        * Matt Adereth :: clojure.core/typing :: https://www.youtube.com/watch?v=uk3A41U0iO4</a>
                 </section>
                 <section><h2>Why Haskell?</h2>
-                    <ul>
-                        <li class="fragment">The laziness might give interesting properties</li>
-                        <li class="fragment">Interesting approach to IO, makes it easy to sandbox</li>
-                        <li class="fragment">It can be highly efficient</li>
-                        <li class="fragment">Syntax secretly quite simple</li>
-                        <li class="fragment">Easy to build a DSL in</li>
                 </section>
                 <section>
                 <p>
@@ -154,6 +85,10 @@ a = <span class="Constant">5</span>;</pre>
                 <br/>
                 <p class="fragment">
                 Practical Algorithms for 3D Computer Graphics<br/>2<sup>nd</sup> Edition, 2013, <span style="font-style: italic;">(Ferguson)</span>, Page 419
+                <br/><br/>
+
+                <span style="font-family: monospace"> csg.js</span>, <a href="https://evanw.github.io/csg.js/" style="font-style: italic;">(Github)</a>
+
                 </p>
                 </section>
                 <section><h2>3D Objects</h2>
@@ -352,18 +287,25 @@ object <span class="Statement">=</span> combinedFaces <span class="Statement">`C
             <section><h2>Does it Work?</h2>
                 <img src="assets/dice_haskell.jpg"/>
             </section>
+            <section><h2>Does it Work?</h2>
+                <img src="assets/roo_dice.jpg"/>
+            </section>
+            <section><h2>A Fancy WebUI</h2>
+
+            </section>
             <section><h2>Further Work?</h2>
                 <ul>
-                    <li class ="fragment">A fancy web UI</li>
-                    <li class="fragment">Different types of operations
-                        <ul class="fragment">
+                    <li>Different types of operations
+                        <ul>
                             <li>2D CAD + Extrusions</li>
                             <li>Convex Hull</li>
                             <li>Minkowski Addition</li>
                         </ul>
                     </li>
-                    <li class="fragment">Produce more efficient geometry</li>
-                    <li class="fragment">Experiment with laziness <span class="bad">(infinite shapes)</span></li>
+                    <li>Produce more efficient geometry</li>
+                    <li>Performance <span class="bad">(maybe just wrap CGAL)</span></li>
+                    <li>Experiment with laziness <span class="bad">(infinite shapes)</span></li>
+                    <li>Experiment with functional types <span class="bad">(monoids)</span></li>
                     <li class="fragment">Unit Testing</li>
             </section>
             <section><h2>Links:</h2><br>
