@@ -1,11 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>csg-haskell</title>
-
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 		<!-- Theme used for syntax highlighting of code -->
@@ -40,59 +39,20 @@
 				<section data-background="assets/title.jpg" data-background-size="100%" data-background-repeat="repeat" data-background-color="#111">
                     <h2 style="text-transform: None;
                           position: fixed; 
-                          top: 5%;
+                          top: 25%;
                           width: 100%;"
-                          >CSG Based CAD in Haskell</h2>
-                </section>
-                <section><h2>Overview</h2>
-                    <ul>
-                        <li>Background and Motivation</li>
-                        <li>What is Constructive Solid Geometry?</li>
-                        <li>How do you implement it?</li>
-                        <li class="fragment">Almost no Haskell!</li></reveal>
-                    </ul>
+                        >Functional Programs for <br/> 3D-Printing</h2>
+                    <br/><br/>
+                   <h4>Joe Warren</h4>
                 </section>
                 <section><h2>Background</h2>
                     <img src="assets/printer.jpg"/>
-                </section>
-                <section><h2>Background</h2>
-                    <img src="assets/part.jpg"/>
-                </section>
-                <section><h2>Background</h2>
-                    <img src="assets/slic3r.png"/>
-                </section>
-                <section><h2>Blender</h2>
-                    <img src="assets/blender.jpg"/>
-                </section>
-                <section><h2>Blender?</h2>
-                    <img width="50%" src="assets/blender_ui.png"/>
-                </section>
-                <section><h2>Blender?</h2>
-                    <img width="400px" src="assets/git.svg"/>
-                </section>
-                <section><h2>Blender?</h2>
-                    <img src="assets/version.jpg"/>
                 </section>
                 <section><h2>OpenScad</h2>
                     <img src="assets/openscad.jpg"/>
                 </section>
                 <section><h2>OpenScad</h2>
                     <img width="50%" src="assets/Csg_tree.png"/>
-                </section>
-                <section><h2>OpenScad?</h2>
-                    <br/>
-                    <pre class='vimCodeElement'>
-<span class="Comment">// The value of 'a' reflects only the last value set</span>
-a = <span class="Constant">0</span>;
-<span class="Statement">echo</span>(a); <span class="Comment">// 5</span>
-a = <span class="Constant">3</span>;
-<span class="Statement">echo</span>(a); <span class="Comment">// 5</span>
-a = <span class="Constant">5</span>;</pre>
-                </section>
-
-                <section><h2>OpenScad?</h2>
-                    <br/>
-                    <h1 style="font-size:600%">WAT</h1>
                 </section>
                 <section><h2>OpenScad?</h2>
                     <ul>
@@ -102,50 +62,10 @@ a = <span class="Constant">5</span>;</pre>
                         <li>No Namespaces</li>
                         <li>Unintuitive Syntax/Scoping Rules</li>
                         <li>Unhelpful Memorization</li>
-                </section>
-                <section><h2>OpenScad?</h2>
-                    <a href="https://www.youtube.com/watch?v=uk3A41U0iO4">
-                        Matt Adereth <br/> clojure.core/typing<br/> https://www.youtube.com/watch?v=uk3A41U0iO4</a>
-                </section>
-                <section><h2>Language Design is Hard</h2>
-                    <p style="font-style: italic;">&ldquo;I'm no language elitist, but language design is hard. There's a reason that some of the most famous computer scientists in the world are also language designers.&rdquo;
-                    </p>
-                    <p>- Jeff Atwood -</p>
-                </section>
-                <section><h2>Use a Library</h2>
-                    <ul>
-                        <li class="fragment">CGAL<span class="bad fragment" style="font-style:italic">, used in OpenScad, crazy fast</span><span class="bad fragment" style="font-style:italic">, cryptic API</span>
-                        </li>
-                        <li class="fragment">csg.js<span class="bad fragment" style="font-style:italic">, eew, JavaScript</span><span class="bad fragment" style="font-style:italic">, also slow, incomplete</span>
-                        </li>
-                        <li class="fragment">csg-python<span class="bad fragment" style="font-style:italic">, pretty nice</span><span class="bad fragment" style="font-style:italic">, slow</span>
-                        </li>
-                        <li class="fragment">scad.clj<span class="bad fragment" style="font-style:italic">, writes OpenScad &#9785;</span><span class="bad fragment" style="font-style:italic">, I don't know Clojure</span>
-                        </li>
-                        <li class="fragment">Implicit Cad<span class="bad fragment" style="font-style:italic">, doesn't output clean objects</span>
-                        </li>
-                </section>
-                <section><h2>Implicit CAD</h2>
-                    <img src="assets/implicitcad.jpg"/>
-                </section>
-                <section>
-                    <p>Obviously I need to implement my own library . . .</p>
-                    <p class="fragment">. . .in Haskell</p>
-                </section>
-                <section><h2>What is Haskell?</h2>
-                    <ul>
-                        <li>Pure functional programming language</li>
-                        <li>Lazy evaluation</li>
-                        <li>Statically typed, with type inference</li>
-                        <li class="fragment" style="font-style:italic;">Interesting Monadic IO</li>
+                    <a style="font-size: small" href="https://www.youtube.com/watch?v=uk3A41U0iO4">
+                        * Matt Adereth :: clojure.core/typing :: https://www.youtube.com/watch?v=uk3A41U0iO4</a>
                 </section>
                 <section><h2>Why Haskell?</h2>
-                    <ul>
-                        <li class="fragment">The laziness might give interesting properties</li>
-                        <li class="fragment">Interesting approach to IO, makes it easy to sandbox</li>
-                        <li class="fragment">It can be highly efficient</li>
-                        <li class="fragment">Syntax secretly quite simple</li>
-                        <li class="fragment">Easy to build a DSL in</li>
                 </section>
                 <section>
                 <p>
@@ -153,7 +73,12 @@ a = <span class="Constant">5</span>;</pre>
                 </p>
                 <br/>
                 <p class="fragment">
-                Practical Algorithms for 3D Computer Graphics<br/>2<sup>nd</sup> Edition, 2013, <span style="font-style: italic;">(Ferguson)</span>, Page 419
+                Constructive Solid Geometry Using BSP Tree<br/>
+Christian Segura, Taylor Stine, Jackie Yang
+                </p><br/>
+                <p class="fragment">
+                <span style="font-family: monospace"> csg.js</span>, Evan Wallace (evanw), <a href="https://evanw.github.io/csg.js/" style="font-style: italic;">(Github)</a>
+
                 </p>
                 </section>
                 <section><h2>3D Objects</h2>
@@ -214,28 +139,19 @@ flipped (a, b, c) <span class="Statement">=</span> (c, b, a)
                     <img  src="assets/combining/6.jpg"/>
                 </section>
                 <section><h2>BSP Trees</h2>
-                    <p style="font-style: italic;">&ldquo;I'm a huge proponent of designing your code around the data, rather 
-                    than the other way around&rdquo; </p>
-                    <p>. . . </p>
-                    <p style="font-style: italic;">&ldquo;Bad programmers worry about the code. Good programmers 
-worry about data structures and their relationships.&rdquo;
-                    </p>
-                    <p>- Linus Torvalds -</p>
-                </section>
-                <section><h2>CSG Algorithm</h2>
                     <img  src="assets/bunny/1.jpg"/>
                 </section>
-                <section><h2>CSG Algorithm</h2>
+                <section><h2>BSP Trees</h2>
                     <img  src="assets/bunny/2.jpg"/>
                 </section>
-                <section><h2>CSG Algorithm</h2>
+                <section><h2>BSP Trees</h2>
                     <img  src="assets/bunny/3.jpg"/>
                 </section>
-                <section><h2>CSG Algorithm</h2>
+                <section><h2>BSP Trees</h2>
                     <img  src="assets/bunny/4.jpg"/>
                 </section>
 
-                <section><h2>CSG Algorithm</h2>
+                <section><h2>BSP Trees</h2>
 <pre class='vimCodeElement'><span class="Type">data</span> BspTree <span class="Statement">=</span> BspTree {
     coplanarTriangles <span class="Statement">::</span> [Tri],
     frontOf <span class="Statement">::</span> BspTree,
@@ -246,22 +162,30 @@ worry about data structures and their relationships.&rdquo;
 emptyBspTree <span class="Statement">=</span> BspTree [] emptyBspTree emptyBspTree</span>
 </pre>
                 </section>
+                <section><h2>BSP Trees</h2>
+<pre class='vimCodeElement'><span class="Type">data</span> BspTree <span class="Statement">=</span> BspBranch !(NonEmpty Tri) !BspTree !BspTree
+             <span class="Statement">|</span> EmptyBspTree
+</pre>
+                </section>
                 <section><p>Test if a point is enclosed:</p>
 
 <pre class='vimCodeElement'>
-encloses <span class="Statement">::</span> BspTree <span class="Statement">-&gt;</span> Vector <span class="Statement">-&gt;</span> Bool
-encloses (BspTree [] _ _) _ <span class="Statement">=</span> False
-encloses tree vertex <span class="Statement">=</span> (BspTree (t<span class="Statement">:</span>_) front back) <span class="Statement">=</span>
-    <span class="Statement">case</span> vectorSideOfPlane (triToPlane t) v <span class="Statement">of</span>
-        FRONT <span class="Statement">-&gt;</span> <span class="Statement">case</span> front <span class="Statement">of</span>
-                      (BspTree [] _ _) <span class="Statement">-&gt;</span> False
-                      a <span class="Statement">-&gt;</span> encloses front vertex
-        BACK <span class="Statement">-&gt;</span> <span class="Statement">case</span> back <span class="Statement">of</span>
-                      (BspTree [] _ _) <span class="Statement">-&gt;</span> True
-                      a <span class="Statement">-&gt;</span> encloses back vertex
-        COPLANAR <span class="Statement">-&gt;</span> <span class="Statement">case</span> back <span class="Statement">of</span>
-                      (BspTree [] _ _) <span class="Statement">-&gt;</span> True
-                      a <span class="Statement">-&gt;</span> encloses back vertex
+encloses <span class="Statement">::</span> BspTree <span class="Statement">-&gt;</span> (Double, Double, Double) <span class="Statement">-&gt;</span> Bool
+encloses EmptyBspTree _ <span class="Statement">=</span> False
+encloses tree vd <span class="Statement">=</span> encloses' tree
+    <span class="Type">where</span>
+        v <span class="Statement">=</span> V3.fromXYZ vd <span class="Statement">::</span> Vector
+        encloses' (BspBranch (t<span class="Statement">:|</span>_) front back) <span class="Statement">=</span>
+            <span class="Statement">case</span> vectorSideOfPlane (triToPlane t) v <span class="Statement">of</span>
+                FRONT <span class="Statement">-&gt;</span> <span class="Statement">case</span> front <span class="Statement">of</span>
+                            EmptyBspTree <span class="Statement">-&gt;</span> False
+                            a <span class="Statement">-&gt;</span> encloses' front
+                BACK <span class="Statement">-&gt;</span> <span class="Statement">case</span> back <span class="Statement">of</span>
+                            EmptyBspTree <span class="Statement">-&gt;</span> True
+                            a <span class="Statement">-&gt;</span> encloses' back
+                COPLANAR <span class="Statement">-&gt;</span> <span class="Statement">case</span> back <span class="Statement">of</span>
+                            EmptyBspTree <span class="Statement">-&gt;</span> True
+                            a <span class="Statement">-&gt;</span> encloses' back
 </pre>
                 </section>
                 <section><p>Test if a point is enclosed:</p>
@@ -301,7 +225,7 @@ object <span class="Statement">=</span> (cube <span class="Statement">`Csg.subtr
 </pre>
             </section>
             <section><h2>Does it Work?</h2>
-                <img src="assets/example_obj.jpg"/>
+                <img src="assets/example_obj_shaded.jpg"/>
             </section>
             <section><h2>Does it Work?</h2>
 <pre class='vimCodeElement'>
@@ -352,24 +276,74 @@ object <span class="Statement">=</span> combinedFaces <span class="Statement">`C
             <section><h2>Does it Work?</h2>
                 <img src="assets/dice_haskell.jpg"/>
             </section>
+            <section><h2>Does it Work?</h2>
+                <img src="assets/lambdale.jpg"/>
+            </section>
+            <!--<section><h2>Does it Work?</h2>
+                <img src="assets/roo_dice.jpg"/>
+            </section>-->
+            <section><h2>Does it Work?</h2>
+                <img src="assets/phonecase.png" style="max-width: 33%"/>
+                <p><a href="https://bitbucket.org/joe_warren/phonecase">
+                https://bitbucket.org/joe_warren/phonecase</a></p>
+            </section>
+            <section><h2>Does it Work?</h2>
+                <img src="assets/arm.gif"/>
+                <p><a href="https://bitbucket.org/joe_warren/robot-arm">
+                https://bitbucket.org/joe_warren/robot-arm</a></p>
+            </section>
+            <section><h2>A Fancy(ish) WebUI</h2>
+                    <img  src="assets/webui.jpg"/>
+            </section>
+            <section><h2>Procedural Generation</h2>
+                <p><a href="https://twitter.com/furniture_gen">
+                        @furniture_gen</a> :: <a href="http://proceduralfurniture.net">
+                proceduralfurniture.net</a></p>
+                    <img  src="assets/chair1.png" height=300/>
+                    <img  src="assets/chair2.png" height=300/>
+            </section>
+            <section><h2>Monoids</h2>
+                <pre class='vimCodeElement fragment'>
+<span class="Type">class</span> Semigroup a <span class="Type">where</span>
+        (<span class="Statement">&lt;&gt;</span>) <span class="Statement">::</span> a <span class="Statement">-&gt;</span> a <span class="Statement">-&gt;</span> a
+
+<span class="Type">class</span> Semigroup a <span class="Statement">=&gt;</span> Monoid a <span class="Type">where</span>
+        mempty  <span class="Statement">::</span> a</pre>
+                <pre class='vimCodeElement fragment'>
+<span class="Type">instance</span> Semigroup [a] <span class="Type">where</span>
+        (<span class="Statement">&lt;&gt;</span>) <span class="Statement">=</span> (<span class="Statement">++</span>)
+
+<span class="Type">instance</span> Monoid [a] <span class="Type">where</span>
+        mempty  <span class="Statement">=</span> []
+</pre>
+                </pre>
+            </section>
+            <section><h2>Monoids</h2>
+                <p><img style="vertical-align:middle"  src="assets/monoids/cube.png" height=100/> ⋃ <img style="vertical-align:middle"  src="assets/monoids/sphere.png" height=100/> = <img style="vertical-align:middle"  src="assets/monoids/union.png" height=100/></p>
+                <p><img style="vertical-align:middle"  src="assets/monoids/cube.png" height=100/> ⋂ <img style="vertical-align:middle"  src="assets/monoids/sphere.png" height=100/> = <img style="vertical-align:middle"  src="assets/monoids/intersection.png" height=100/></p>
+            </section>
+            <section><h2>Further Work?</h2>
+                <img src="assets/example_obj_shaded.jpg" width="400"/> <img src="assets/example_obj.jpg" width="400"/>
+            </section>
             <section><h2>Further Work?</h2>
                 <ul>
-                    <li class ="fragment">A fancy web UI</li>
-                    <li class="fragment">Different types of operations
-                        <ul class="fragment">
+                    <li>Produce more efficient geometry</li>
+                    <li>Different types of operations
+                        <ul>
                             <li>2D CAD + Extrusions</li>
                             <li>Convex Hull</li>
                             <li>Minkowski Addition</li>
                         </ul>
                     </li>
-                    <li class="fragment">Produce more efficient geometry</li>
-                    <li class="fragment">Experiment with laziness <span class="bad">(infinite shapes)</span></li>
+                    <li>Performance <span class="bad">(maybe just wrap CGAL)</span></li>
                     <li class="fragment">Unit Testing</li>
             </section>
             <section><h2>Links:</h2><br>
                 <p>Code:</p>
                 <p><a href="https://bitbucket.org/joe_warren/csg-haskell">
                 https://bitbucket.org/joe_warren/csg-haskell</a></p>
+                <p><a href="https://bitbucket.org/joe_warren/csg-raytracer">
+                https://bitbucket.org/joe_warren/csg-raytracer</a></p>
                 <br/>
                 <p>Slides:</p>
                 <p><a href="https://bitbucket.org/joe_warren/csg-talk">
