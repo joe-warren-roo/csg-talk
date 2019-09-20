@@ -215,7 +215,7 @@ encloses tree vd <span class="Statement">=</span> encloses' tree
                 <section><h2>Does it Work?</h2>
 <pre class='vimCodeElement' style="font-size: 12pt;">
 object <span class="Statement">::</span> Csg.BspTree
-object <span class="Statement">=</span> (cube <span class="Statement">`Csg.subtract`</span> cross) <span class="Statement">`Csg.intersection`</span> sphere
+object <span class="Statement">=</span> (cube <span class="Statement">`Csg.intersection`</span> sphere ) <span class="Statement">`Csg.subtract`</span> cross
     <span class="Type">where</span>
         sphere <span class="Statement">=</span> Csg.unitSphere <span class="Constant">32</span> <span class="Constant">16</span>
         cube <span class="Statement">=</span> Csg.uniformScale <span class="Constant">1.6</span> Csg.unitCube
